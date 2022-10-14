@@ -2,27 +2,29 @@
     pageEncoding="UTF-8"%>
 <%@ page import="com.gyojincompany.member.MemberDao" %>
 <%@ page import="com.gyojincompany.member.MemberDto" %>
+<jsp:useBean id="dto" class="com.gyojincompany.member.MemberDto"/>
+<jsp:setProperty property="*" name="dto"/>
 <% request.setCharacterEncoding("utf-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 가입 확인</title>
 </head>
 <body>
 	<h3>회원 가입 성공 여부</h3>
 	<hr>
 	<%	
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
+		//String id = request.getParameter("id");
+		//String pw = request.getParameter("pw");
+		//String name = request.getParameter("name");
+		//String email = request.getParameter("email");
 		
-		MemberDto dto = new MemberDto();
-		dto.setId(id);
-		dto.setPw(pw);
-		dto.setUsername(name);
-		dto.setEmail(email);		
+		//MemberDto dto = new MemberDto();
+		//dto.setId(id);
+		//dto.setPw(pw);
+		//dto.setUsername(name);
+		//dto.setEmail(email);		
 		
 		MemberDao dao = new MemberDao();
 		int joinCheck = dao.insertMember(dto);

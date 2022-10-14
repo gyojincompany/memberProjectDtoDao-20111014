@@ -51,5 +51,56 @@ public class MemberDao {
 		return dbFlag;//성공여부 값 반환(1이면 성공)
 	}
 	
+	public int idCheck(String id) { //아이디의 중복 가입 여부(같은 아이디가 이미 존재하는지 여부 확인)
+		
+		int idFlag = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs =null;
+		
+		String sql="SELECT * FROM members WHERE id=?";
+		
+		try {
+			Class.forName(driverName);
+			conn = DriverManager.getConnection(url, user, pass);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				idFlag= 1;//이미 가입하려는 아이디가 존재함
+			} else {
+				idFlag = 0;//가입하려는 아이디와 같은 아이디가 없으므로 가입 가능 
+			}
+			
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return idFlag;// 가입하려는 아이디가 이미 존재하면 1이 반환, 아니면 0이 반환
+	}
+	
 	
 }
