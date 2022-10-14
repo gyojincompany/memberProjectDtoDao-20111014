@@ -1,7 +1,7 @@
 package com.gyojincompany.member;
 
 public class MemberDto {
-	private String id="tiger";
+	private String id;
 	private String pw;
 	private String username;
 	private String email;
