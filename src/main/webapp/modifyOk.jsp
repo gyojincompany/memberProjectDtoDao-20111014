@@ -21,6 +21,9 @@
 			out.println("회원 정보 수정 실패!");
 		}
 	%>
+	
+	<br><br>
+	<a href="main.jsp">메인 화면으로 가기</a>
 
 </body>
 </html>

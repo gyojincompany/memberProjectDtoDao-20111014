@@ -269,4 +269,49 @@ public class MemberDao {
 		return updateFlag;//1이 반환되면 정보수정 성공, 아니면 정보수정 실패		
 	}
 	
+	public int delete(String id) {
+		int deleteFlag = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM members WHERE id=?";
+		
+		try {
+			Class.forName(driverName);
+			conn = DriverManager.getConnection(url, user, pass);
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,id);
+			
+			
+			deleteFlag  = pstmt.executeUpdate();//수정 성공이면 1이 반환, 아니면 다른 값 반환
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) {				
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+		
+		return deleteFlag;// 회원탈퇴 성공하면 1 아니면 0을 반환
+	}
+	
+	
 }

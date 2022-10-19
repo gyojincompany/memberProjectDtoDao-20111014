@@ -42,5 +42,7 @@
 			}
 		}
 	%>
+	<br><br>
+	<a href="login.jsp">로그인 화면으로 이동하기</a>
 </body>
 </html>
